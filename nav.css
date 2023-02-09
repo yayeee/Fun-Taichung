@@ -1,0 +1,91 @@
+/* 頂部導覽列(navTOP)  */
+/* 設定導航列的樣式 */
+.navTOP {
+    background-color: rgb(43, 49, 63);
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;  /* 這個屬性決定導覽列是否顯示在其他元素的上面。 */
+}
+
+.navTOP ul {
+    list-style-type: none;
+    width: 100%;
+}
+
+h1 {
+    color: rgb(246, 242, 229);
+
+}
+
+.navTOP li {
+    display: inline-block;
+}
+
+/* 設定導航連結的樣式 */
+.navTOP a {
+    float: left;
+    color: rgb(246, 242, 229);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+.navTOP a:hover {
+    background-color: white;
+    color: black;
+}
+
+/*=======================================================*/
+/* 底部導覽列(navBTM) */
+/* 設定導航列的樣式 */
+.navBTM {
+    background-color: rgb(43, 49, 63);
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.navBTM ul {
+    list-style-type: none;
+    width: 100%;
+}
+
+
+.navBTM li {
+    display: inline-block;
+}
+
+
+/* 設定導航連結的樣式 */
+.navBTM li a {
+    display: block;
+    float: left;
+    color: rgb(246, 242, 229);
+    text-align: center;
+    padding: 14px 12px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+/*=======================================================*/
+
+/* 地圖 */
+.map {
+	height: 100%;
+    width: 100%;
+    margin-top: -550px;
+    margin-left: 1%;
+	position: relative;
+	z-index: -2;
+}

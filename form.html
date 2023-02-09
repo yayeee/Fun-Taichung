@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>意見表單</title>
+
+    <style>
+        h3 {
+            color: lightskyblue;
+        }
+
+        form {
+            border-style: outset;
+            padding: 80px;
+            margin-right: 0;
+            background-color: rgb( 246, 242, 229);
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- <form action="submit_form.php" method="post"> -->
+    <form action="" method="post" style="font-family:DFKai-sb;">
+        <h3>您的資料</h3>
+        <label for="name">姓名</label><br>
+        <input type="text" name="user_name" id="name" placeholder="請輸入姓名">
+        <br><br>
+
+        <label for="email">Email</label><br>
+        <input type="email" name="user_email" id="email" placeholder="請輸入信箱">
+
+        <br>
+
+        <h3>您的意見</h3>
+        <label for="message">意見內容</label><br>
+        <textarea name="user_message" id="message"></textarea>
+        <br><br>
+
+        <input type="submit" value="送出">
+        <br><br>
+
+    </form>
+
+</body>
+
+</html>

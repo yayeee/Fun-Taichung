@@ -1,0 +1,88 @@
+/* 左側選單 */
+/* * {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+} */
+
+.txt {
+	color: rgb( 246, 242, 229);
+}
+
+
+
+
+.side-menu {
+	position: absolute;
+	width: 150px;  /* 原width: 300px; */
+	height: 20%;
+	padding: 50px 0;
+	top: 100px;
+	box-sizing: border-box;
+	background-color: rgb( 43, 49, 63 );
+	display: flex;
+	flex-direction: column;
+    transform: translateX(-100%);
+	transition: .3s;
+    z-index: 401;
+    
+}
+
+
+/* 按鈕 */
+/*=====================================*/
+.side-menu label {
+	position: absolute;
+	height: 60px;
+	width: 40px;
+	background-color: rgb( 43, 49, 63 );
+	color: rgb( 246, 242, 229);
+	right: -40px;
+	top: 5px;
+	bottom: 0;
+	margin: auto;
+	line-height: 80px;
+	text-align: center;
+	font-size: 30px;
+	border-radius: 0 10px 10px 0;
+    
+    
+}
+
+#arrow {
+    padding-top: 13px;
+}
+#side-menu-switch {
+	position: absolute;
+    
+	opacity: 0;
+	z-index: -1;
+}
+
+#side-menu-switch:checked + .side-menu {
+	transform: translateX(0);
+}
+
+#side-menu-switch:checked + .side-menu label .fa {
+	transform: scaleX(-1);
+} 
+/*=====================================*/
+nav ul {
+	list-style-type: none;
+}
+nav li {
+	height: 10%;
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	
+}
+
+/* .line {
+	position: absolute;
+	border-top: 1px solid rgb(246, 231, 229);
+	left: 10px;
+	right: 10px;
+} */
+
+

@@ -1,0 +1,222 @@
+// signup.php
+// 判斷密碼與確認密碼是否相符
+
+const [password, setPassword] = useState("");
+const [confirmpassword, setConfirmPassword] = useState("");
+const [error, setError] = useState("");
+
+const handleInputChange = (event) => {
+  if (event.target.name === "password") {
+    setPassword(event.target.value);
+  } else {
+    setConfirmPassword(event.target.value);
+  }
+  if (password !== confirmpassword) {
+    setError("密碼不相符");
+  } else {
+    setError("");
+  }
+};
+
+這段程式碼中，使用了 React 的 Hooks 中的 useState 來定義三個狀態：
+password、confirmpassword 和 error。
+
+password 和 confirmpassword 分別用來存放使用者輸入的密碼和確認密碼，
+初始值都是空字串。
+error 用來存放錯誤訊息，初始值也是空字串。
+
+handleInputChange 是一個事件處理函數，當使用者在輸入密碼和確認密碼時會觸發。
+它會檢查事件目標的 name 屬性，如果是 "password"，
+就用 setPassword 更新 password 的值，否則就更新 confirmpassword 的值。
+
+接著會檢查 password 和 confirmpassword 是否相等，
+如果不相等，就用 setError 設置 error 為 "密碼不相符"，
+否則就清空 error。
+
+*
+useState 是 React 提供的一種 Hook，它允許組件在其內部維護狀態。
+可以在組件中使用 useState 來定義一個狀態變量，並提供一個函數來更新狀態變量的值。
+
+通常用法，
+const [stateVariable, setStateVariable] = useState(initialValue); 
+stateVariable 是狀態變量的名稱，
+initialValue 是狀態變量的初始值。 
+setStateVariable 可以用來更新狀態變量的值。
+
+
+
+//
+如果你的專案是使用 create-react-app 建立的，
+你可以在 src/components 資料夾中建立新的檔案，來定義你的組件。
+
+要記得在你的根組件中, 把它們匯入使用。
+
+const MyComponent = () => {
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleInputChange = (event) => {
+    if (event.target.name === "password") {
+      setPassword(event.target.value);
+    } else {
+      setConfirmPassword(event.target.value);
+    }
+    if (password !== confirmpassword) {
+      setError("密碼不相符");
+    } else {
+      setError("");
+    }
+  };
+  return (
+    <div>
+    <label for="password">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        密碼 &nbsp;
+        <input
+            type="password"
+            name="password"
+            placeholder=" 8-16碼英數字混合"
+            onChange={handleInputChange}
+        />
+    </label>
+    <br />
+    <label for="confirmpassword">
+        &nbsp;
+        確認密碼 &nbsp;
+        <input
+            type="password"
+            name="confirmpassword"
+            placeholder=" 請再次輸入您的密碼"
+            onChange={handleInputChange}
+        />
+    </label>
+    <br />
+    <p>{error}</p>
+    </div>
+  );
+};
+
+
+//
+js
+function handleInputChange(event) {
+  const { name, value } = event.target;
+  if (name === "confirmpassword") {
+    if (value !== document.getElementsByName("password")[0].value) {
+      document.getElementById("errmessage").innerHTML = "error";
+    } else {
+      document.getElementById("errmessage").innerHTML = "";
+    }
+  }
+}
+php
+if ($_POST['password'] !== $_POST['confirmpassword']) {
+    echo 'error';
+}
+//
+<input type="password" id="pwd1" onChange={() => {
+    const pwd = document.getElementById("pwd1").value;
+    const pwdFormat = /^[a-zA-Z0-9]{8,12}$/;
+    if(!pwdFormat.test(pwd)) {
+        alert("密碼格式錯誤，請輸入8~12位的數字或字母。");
+    }
+}}>
+
+<input type="password" id="pwd2" onChange={() => {
+    const pwd1 = document.getElementById("pwd1").value;
+    const pwd2 = document.getElementById("pwd2").value;
+    if(pwd1 !== pwd2) {
+        alert("兩次密碼不一致，請重新輸入。");
+    }
+}}>
+
+*使用正則表達式驗證密碼格式、使用 state 來管理驗證結果等。
+
+
+//刪除 session
+
+  刪除指定 session
+  unset($_SESSION['userName']);
+
+  刪除全部 session
+  session_unset();
+  釋放當前記憶體中已經創建的所有 $_SESSION 變數，但不刪除session 檔案以及不釋放對應的 session ID
+
+  session_destroy();
+  刪除當前用戶對應的 session 檔案以及釋放 session ID，
+  內存中的 $_SESSION 變數內容依然保留。
+
+
+//
+在 check_login.php 中，如果登入失敗，
+則使用 header 函數將使用者導向 login.php 並帶上錯誤訊息。
+
+  <?php
+  if (check_login_fail()) {
+      $error_message = "帳號或密碼錯誤";
+      header("Location: login.php?error_message=" . urlencode($error_message));
+      exit;
+  }
+  ?>
+
+
+在 login.php 中，
+使用 $_GET 或 $_POST 取得錯誤訊息。
+
+  <?php
+  if (isset($_GET['error_message'])) {
+      $error_message = $_GET['error_message'];
+  }
+  ?>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>登入</title>
+    </head>
+    <body>
+      <?php if (isset($error_message)): ?>
+      <div class="error"><?php echo $error_message; ?></div>
+      <?php endif; ?>
+      <form action="check_login.php" method="post">
+        <label for="username">帳號</label>
+        <input type="text" id="username" name="username">
+        <br>
+        <label for="password">密碼</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <input type="submit" value="登入">
+      </form>
+    </body>
+  </html>
+
+//在註冊表單檢查欄位符合條件
+<label for="mobile">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    手機 &nbsp;
+    <input type="tel" name="mobile" 
+        placeholder=" 09xxxxxxxx" 
+        onchange="validateMobile()"/>
+</label>
+
+js:
+function validateMobile() {
+    var mobile = document.getElementsByName("mobile")[0].value;
+    if (!/^09\d{8}$/.test(mobile)) {
+        alert("Invalid mobile number. It should be 10 digits long and start with 09.");
+    }
+}
+
+使用 JavaScript 的正則表達式 (Regular Expression) 
+來檢查手機號碼是否符合長度為 10 且開頭為 09 的條件。
+正則表達式使用了 ^ 和 $ 符號來限制字串的開頭和結尾，
+使用了 \d 來匹配數字，並使用了 {} 來限制字串的長度。
+
+
+//login.php第45行
+
+  <?php if (isset($error_message)): ?>
+        <div class="error" style=" text-align: center; color:red;">
+            <?php echo $error_message; ?>
+        </div>
+    <?php endif; ?>
